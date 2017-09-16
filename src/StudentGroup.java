@@ -1,5 +1,5 @@
 import java.util.Date;
-
+import java.lang.Exception;
 /**
  * A fix-sized array of students
  * array length should always be equal to the number of stored elements
@@ -24,30 +24,53 @@ public class StudentGroup implements StudentArrayOperation {
 	}
 
 	@Override
-	public Student[] getStudents() {
+	public Student[] getStudents() throws IllegalArgumentException {
 		// Add your implementation here
-		return null;
+		if(students == null){
+			throw new IllegalArgumentException();
+		}
+ 		return students;
 	}
 
 	@Override
-	public void setStudents(Student[] students) {
+	public void setStudents(Student[] students) throws IllegalArgumentException  {
 		// Add your implementation here
+		if(students.length < 0 || students.length >= this.students.length){
+			throw new IllegalArgumentException();
+		}
+		else
+	    	this.students = students;
 	}
 
 	@Override
-	public Student getStudent(int index) {
+	public Student getStudent(int index) throws IllegalArgumentException   {
 		// Add your implementation here
-		return null;
+		if(students[index] == null || index < 0 || index >= students.length){
+			throw new IllegalArgumentException();
+		}
+		return students[index];
 	}
 
 	@Override
-	public void setStudent(Student student, int index) {
+	public void setStudent(Student student, int index) throws IllegalArgumentException   {
 		// Add your implementation here
+		if(student == null || index < 0 || index >= students.length){
+			throw new IllegalArgumentException();
+		}
+		else{
+			students[index] = student;
+		}
 	}
 
 	@Override
-	public void addFirst(Student student) {
+	public void addFirst(Student student) throws IllegalArgumentException {
 		// Add your implementation here
+		if(student == null){
+			throw new IllegalArgumentException();
+		}
+		else{
+			students[0] = student;
+		}
 	}
 
 	@Override
